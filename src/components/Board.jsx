@@ -41,7 +41,9 @@ const Board = () => {
   };
 
   return (
-    <div className="Board-container ">
+    <>
+    <h1>Tic Tac Toe Game</h1>
+    <div className="flex-row px-24 py-8 items-center Board-container ">
       <div className="board-row flex">
         <Square onClick={() => onSquareClick(0)} value={state[0]} />
         <Square onClick={() => onSquareClick(1)} value={state[1]} />
@@ -59,6 +61,7 @@ const Board = () => {
       </div>
       {isWinner?<div className="m-2 flex text-center justify-center border rounded text-blue-400">{isWinner} won the game</div>:<></>}
     </div>
+    </>
   );
 };
 
