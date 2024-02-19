@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Square from "./Square";
 
 const Board = () => {
@@ -28,6 +28,9 @@ const Board = () => {
   };
   const isWinner = checkWinner()
 
+  const isBoardFull = () => {
+    return state.every(square => square !== null);
+  };
 
   const onSquareClick = (index) => {
     if (state[index]) return;
@@ -39,6 +42,18 @@ const Board = () => {
     setState(copyState);
     setXturn(!isXturn);
   };
+
+  const restartGame = () => {
+    setState(Array(9).fill(null));
+    setXturn(true);
+  };
+
+  useEffect(() => {
+    if (isBoardFull() && !isWinner) {
+      alert("Tie game!");
+      restartGame();
+    }
+  }, [state, isWinner]);
 
   return (
     <>
